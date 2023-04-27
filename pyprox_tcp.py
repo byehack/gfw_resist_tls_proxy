@@ -32,11 +32,9 @@ def handshake(backend_sock, client_sock):
         fragment_data = data[i: i + L_fragment]
         print(f'sending {len(fragment_data)} bytes')
         backend_sock.sendall(fragment_data)
-        time.sleep(fragment_sleep)
         if not junk:
             junk = True
             backend_sock.sendall(os.urandom(L_fragment))
-            time.sleep(fragment_sleep)
     print('----------finish------------')
 
     data = backend_sock.recv(16384)
